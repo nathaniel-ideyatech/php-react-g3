@@ -1,3 +1,0 @@
-# ecommerce
-
-Group 3
