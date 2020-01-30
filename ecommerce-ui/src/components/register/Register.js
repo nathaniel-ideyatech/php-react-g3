@@ -28,10 +28,10 @@ export default function Register(props) {
       user.email = email;
       user.password = password;
       user.password_confirmation = password;
-      console.log(user);
-      axios.post('http://192.168.30.32:8000/api/register', { user })
+      axios.post('http://localhost:8000/api/register', user)
         .then(result => {
           console.log(result);
+          props.history.push("/");
         });
     }
   
