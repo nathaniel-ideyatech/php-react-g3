@@ -20,3 +20,5 @@ Route::post('/login/refresh', 'AuthController@refresh');
 Route::middleware('auth:api')->group(function(){
     Route::get('/logout','AuthController@logout');
 });
+
+Route::apiResource('services', 'ServiceController');
