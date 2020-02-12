@@ -56,7 +56,7 @@ export default function Register(props) {
               value={password} onChange={e => setPassword(e.target.value)}/>
           </Form.Group>
 
-          <Button variant="primary" type="submit" disabled={!validateForm()}>
+          <Button variant={validateForm()? "primary" : "secondary"} type="submit" disabled={!validateForm()}>
             Register
           </Button>
         </Form>
