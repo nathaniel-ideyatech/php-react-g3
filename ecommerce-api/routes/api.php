@@ -19,6 +19,15 @@ Route::post('/login/refresh', 'AuthController@refresh');
 
 Route::middleware('auth:api')->group(function(){
     Route::get('/logout','AuthController@logout');
+    Route::get('/users/active', 'UserController@getActiveUsersOnly')->middleware('roles.authority');
+
+    Route::resource('users', 'UserController')->middleware('roles.authority');
+
+    Route::apiResource('services', 'ServiceController')->middleware('roles.authority');
+
+    //User CRUD
+
 });
 
-Route::apiResource('services', 'ServiceController');
+
+
