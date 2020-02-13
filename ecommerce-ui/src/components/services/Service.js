@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Button, Form, Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import "./Service.css";
 
 export default function Service(props) {
@@ -21,9 +21,24 @@ export default function Service(props) {
         props.history.push(`/services/edit/${id}`);
     }
 
+    function addService() {
+        props.history.push(`/services/add`);
+    }
+
+    function deleteService(id) {
+        axios.delete(`http://localhost:8000/api/services/${id}`)
+        .then(res => {
+            window.location.reload(true);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
 
     return(
         <div className="Service">
+            <div className="float-md-right"><Button onClick={()=> addService()}>Add Service</Button></div>
             <Table responsive>
                 <thead>
                     <tr>
@@ -43,7 +58,10 @@ export default function Service(props) {
                                     <td>{value.description}</td>
                                     <td>{value.price}</td>
                                     <td>{value.is_active? 'Active' : 'Inactive'}</td>
-                                    <td><Button onClick={()=> editService(value.id)}>Edit</Button></td>
+                                    <td>
+                                        <Button onClick={()=> editService(value.id)}>Edit</Button>
+                                        <Button onClick={()=> deleteService(value.id)}>Delete</Button>
+                                    </td>
                                 </tr>
                             )
                         })

@@ -21,9 +21,14 @@ export default function User(props) {
         props.history.push(`/users/edit/${id}`);
     }
 
+    function addUser() {
+        props.history.push(`/users/add`);
+    }
+
 
     return(
         <div className="User">
+            <div className="float-md-right"><Button onClick={()=> addUser()}>Add User</Button></div>
             <Table responsive>
                 <thead>
                     <tr>
