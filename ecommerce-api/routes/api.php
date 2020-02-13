@@ -19,10 +19,11 @@ Route::post('/login/refresh', 'AuthController@refresh');
 
 Route::middleware('auth:api')->group(function(){
     Route::get('/logout','AuthController@logout');
-    Route::apiResource('users', 'UserController')->middleware('roles.authority');
+//    Route::apiResource('users', 'UserController')->middleware('roles.authority');
+
     Route::apiResource('services', 'ServiceController');
 
-//    Route::get('/users')
+    //User CRUD
 });
 
 

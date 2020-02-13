@@ -12,9 +12,6 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
-
-        $permission_ids = []; // an empty array of stored permission IDs
-
         foreach (Route::getRoutes()->getRoutes() as $key => $route)
         {
             $action = $route->getActionname();
@@ -24,14 +21,12 @@ class PermissionTableSeeder extends Seeder
             $method = last($_action);
 
             $permission_check = DB::table('permissions')->where(['controller'=>$controller, 'method'=>$method])->first();
-            echo !$permission_check;
+
             if(!$permission_check){
-                $id = DB::table('permissions')->insertGetId([
+                DB::table('permissions')->insert([
                     'controller' => $controller,
                     'method' => $method
                 ]);
-
-                array_push($permission_ids,$id);
             }
         }
 
