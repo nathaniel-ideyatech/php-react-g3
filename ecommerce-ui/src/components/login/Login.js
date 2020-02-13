@@ -23,11 +23,15 @@ export default function Login(props) {
     user.email = email;
     user.password = password;
     // const 
-    axios.post('http://localhost:8000/api/login', user)
+    
+    const data =  axios.post('http://localhost:8000/api/login', user)
       .then(result => {
-        console.log("Logged in...",result)
+        return result.data
         props.history.push("/");
     });
+
+    console.log("Logged in...",data)
+
   }
 
   const onLogin = async (event) => {

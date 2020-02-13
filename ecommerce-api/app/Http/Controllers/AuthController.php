@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -15,7 +15,11 @@ class AuthController extends Controller
         $validatedData = $request -> validate([
             'name' => 'required|max:55',
             'email'=> 'email|required',
-            'password'=> 'required|confirmed'
+            'password'=> 'required|confirmed',
+            'role_id' => [
+                'required',
+                Rule::in(['2', '3'])
+            ]
         ]);
 
         $validatedData['password'] = bcrypt($request->password);
