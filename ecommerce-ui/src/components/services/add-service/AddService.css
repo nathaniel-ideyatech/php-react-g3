@@ -1,0 +1,11 @@
+.AddService {
+    padding: 50px 20px 10px 20px;
+}
+
+.AddService .form-group {
+    width: 60%!important;
+}
+
+.AddService .btn {
+    margin-right: 10px;
+}

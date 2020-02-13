@@ -1,0 +1,11 @@
+.AddUser {
+    padding: 50px 20px 10px 20px;
+}
+
+.AddUser .form-group {
+    width: 60%!important;
+}
+
+.AddUser .btn {
+    margin-right: 10px;
+}

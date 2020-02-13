@@ -34,7 +34,7 @@ export default function Login(props) {
         <Form.Group>
           <Form.Label>Email address</Form.Label>
           <Form.Control 
-            type="email" placeholder="Enter email"
+            type="email" placeholder="Enter email" autoFocus
             value={email} onChange={e => setEmail(e.target.value)}/>
         </Form.Group>
 
@@ -45,7 +45,7 @@ export default function Login(props) {
             value={password} onChange={e => setPassword(e.target.value)}/>
         </Form.Group>
 
-        <Button variant="primary" type="submit" disabled={!validateForm()}>
+        <Button variant={validateForm()? "primary" : "secondary"} type="submit" disabled={!validateForm()}>
           Login
         </Button>
       </Form>
