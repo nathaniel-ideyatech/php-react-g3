@@ -3,6 +3,9 @@ import {Route, Switch} from 'react-router-dom'
 import Login from './login/Login';
 import Register from './register/Register';
 import Home from './home/Home';
+import User from './users/User';
+import Service from './services/Service';
+import AddService from './services/add-service/AddService';
 
 export default function Main() {
     return (
@@ -10,6 +13,10 @@ export default function Main() {
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
+            <Route exact path="/users" component={User}/>
+            <Route exact path="/services" component={Service}/>
+                <Route path="/services/add" component={AddService} />
+                <Route path="/services/edit/:id" component={AddService} />
         </Switch>
     )
 }
