@@ -25,6 +25,16 @@ export default function User(props) {
         props.history.push(`/users/add`);
     }
 
+    function deleteUser(id) {
+        axios.delete(`http://localhost:8000/api/users/${id}`)
+        .then(res => {
+            window.location.reload(true);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
 
     return(
         <div className="User">
@@ -46,7 +56,10 @@ export default function User(props) {
                                     <td>{value.name}</td>
                                     <td>{value.email}</td>
                                     <td>{value.user_type}</td>
-                                    <td><Button onClick={()=> editUser(value.id)}>Edit</Button></td>
+                                    <td>
+                                        <Button onClick={()=> editUser(value.id)}>Edit</Button>
+                                        <Button onClick={()=> deleteUser(value.id)}>Delete</Button>
+                                    </td>
                                 </tr>
                             )
                         })
