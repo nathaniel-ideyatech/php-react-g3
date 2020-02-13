@@ -18,14 +18,20 @@ export default function Login(props) {
     return email.length > 0 && password.length > 0;
   }
 
-  function handleSubmit(event) {
+  const  handleSubmit = async (event) => {
     event.preventDefault();
     user.email = email;
     user.password = password;
+    // const 
     axios.post('http://localhost:8000/api/login', user)
       .then(result => {
+        console.log("Logged in...",result)
         props.history.push("/");
-      });
+    });
+  }
+
+  const onLogin = async (event) => {
+    event.preventDefault();
   }
 
   return (
