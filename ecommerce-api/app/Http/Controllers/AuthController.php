@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\UserType;
 use App\User;
-use BenSampo\Enum\Rules\EnumValue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -18,6 +16,10 @@ class AuthController extends Controller
             'name' => 'required|max:55',
             'email'=> 'email|required',
             'password'=> 'required|confirmed',
+            'role_id' => [
+                'required',
+                Rule::in(['2', '3'])
+            ]
         ]);
 
         $validatedData['password'] = bcrypt($request->password);
