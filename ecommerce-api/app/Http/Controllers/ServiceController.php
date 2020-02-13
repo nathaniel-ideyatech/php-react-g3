@@ -20,7 +20,6 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
         return Service::all();
     }
 
@@ -55,7 +54,6 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
         return Service::find($service->id);
     }
 

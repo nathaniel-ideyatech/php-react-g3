@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Enums\UserType;
 
-class UpdateUserTable extends Migration
+class UpdateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +13,10 @@ class UpdateUserTable extends Migration
      */
     public function up()
     {
-        //
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_active')->unsigned()->default(1);
-            $table->tinyInteger('user_type')->unsigned()->default(UserType::CUSTOMER);
+            $table->boolean('is_active')->default(1);
+            $table->unsignedBigInteger('role_id')->index()->default(3);
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 
@@ -29,7 +28,6 @@ class UpdateUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('user_type');
             $table->dropColumn('is_active');
         });
     }
