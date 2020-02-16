@@ -26,11 +26,14 @@ export default function Login(props) {
     
     const data =  axios.post('http://localhost:8000/api/login', user)
       .then(result => {
-        return result.data
+        // return result.data
+        localStorage.setItem("AUTH KEY", result.data.access_token);
+        console.log("Logged in...",result.data.access_token)
         props.history.push("/");
     });
 
-    console.log("Logged in...",data)
+    console.log(localStorage)
+    
 
   }
 

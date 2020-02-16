@@ -26,8 +26,9 @@ Route::middleware('auth:api')->group(function(){
     Route::apiResource('services', 'ServiceController')->middleware('roles.authority');
 
     //User CRUD
-
 });
+
+Route::resource('users', 'UserController');
 
 
 
