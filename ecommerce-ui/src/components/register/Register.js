@@ -35,7 +35,7 @@ export default function Register(props) {
       axios.post('http://localhost:8000/api/register', user)
         .then(result => {
           console.log(result);
-          props.history.push("/");
+          props.history.push("/login");
         });
     }
   
@@ -67,7 +67,7 @@ export default function Register(props) {
           </Form.Group>
 
           <Form.Group controlId="roleType">
-            <Form.Label></Form.Label>
+            <Form.Label>User Type</Form.Label>
             <Form.Control as="select" value={role_id} onChange={e => setRoleId(e.target.value)}>
               <option value="2">Service Provider</option>
               <option value="3">Customer</option>

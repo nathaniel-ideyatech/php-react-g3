@@ -9,7 +9,9 @@ class AddUser extends React.Component {
         this.state = {
             name: '',
             email: '',
-            password: ''
+            password: '',
+            confirmPassword: '',
+            roleId: 1
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -25,17 +27,23 @@ class AddUser extends React.Component {
         const user = {
             name: this.state.name,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            password_confirmation: this.state.confirmPassword,
+            role_id: this.state.roleId
+        }
+
+        const header = {
+            "Authorization" : `Bearer ${localStorage.getItem('tokens')}`
         }
         if(this.state.id) {
-            axios.put(`http://localhost:8000/api/users/${this.state.id}`, user)
+            axios.put(`http://localhost:8000/api/users/${this.state.id}`, user, {headers:header})
             .then(result => {
                 if (result) {
                     this.props.history.push("/users");
                 }
             });
         } else {
-            axios.post(`http://localhost:8000/api/users`, user)
+            axios.post(`http://localhost:8000/api/users`, user, {headers:header})
             .then(result => {
                 if (result) {
                     this.props.history.push("/users");
@@ -47,14 +55,19 @@ class AddUser extends React.Component {
     componentDidMount() {
         if(this.props.match.params.id) {
             this.state.id = this.props.match.params.id
-            axios.get(`http://localhost:8000/api/users/${this.state.id}`)
+            const header = {
+                "Authorization" : `Bearer ${localStorage.getItem('tokens')}`
+            }
+            axios.get(`http://localhost:8000/api/users/${this.state.id}`, {headers: header})
             .then(result => {
                 if (result) {
                     const data = result.data;
                     this.setState({
                         name: data.name,
                         email: data.email,
-                        password: data.password
+                        //password: data.password,
+                        //password_confirmation: data.password_confirmation,
+                        role_id: data.role_id
                     });
                 }
             });
@@ -84,7 +97,23 @@ class AddUser extends React.Component {
                         <Form.Label>Password</Form.Label>
                         <Form.Control 
                             type="password" name="password" placeholder="Password"
-                            value={this.state.password} onChange={this.handleChange}/>
+                            value={this.state.password} onChange={this.handleChange} />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control 
+                            type="password" name="confirmPassword" placeholder="Confirm Password"
+                            value={this.state.confirmPassword} onChange={this.handleChange}/>
+                    </Form.Group>
+
+                    <Form.Group controlId="roleType">
+                        <Form.Label>User Type</Form.Label>
+                        <Form.Control as="select" name="roleId" value={this.state.roleId} onChange={this.handleChange}>
+                            <option value="1">Admin</option>
+                            <option value="2">Service Provider</option>
+                            <option value="3">Customer</option>
+                        </Form.Control>
                     </Form.Group>
 
                     <Button type="submit">

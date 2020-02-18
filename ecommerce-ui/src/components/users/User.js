@@ -6,11 +6,23 @@ import "./User.css";
 export default function User(props) {
 
     const [users, setUsers] = useState([]);
+    const [isAuthorized, setIsAuthorized] = useState([false]);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/users')
+        const data = localStorage.getItem("tokens");
+        
+        const header = {
+            "Authorization" : `Bearer ${data}`}
+
+        axios.get('http://localhost:8000/api/users', {headers: header})
             .then(res => {
-                setUsers(res.data);
+                if(res.data.error) {
+                    setIsAuthorized(false);
+                    props.history.push(`/`);
+                } else {
+                    setIsAuthorized(true);
+                    setUsers(res.data);
+                }
             })
             .catch(err => {
                 console.log(err);
@@ -26,7 +38,9 @@ export default function User(props) {
     }
 
     function deleteUser(id) {
-        axios.delete(`http://localhost:8000/api/users/${id}`)
+        const header = {
+            "Authorization" : `Bearer ${localStorage.getItem("tokens")}`}
+        axios.delete(`http://localhost:8000/api/users/${id}`, {headers: header})
         .then(res => {
             window.location.reload(true);
         })
@@ -34,7 +48,6 @@ export default function User(props) {
             console.log(err);
         })
     }
-
 
     return(
         <div className="User">
@@ -68,4 +81,5 @@ export default function User(props) {
             </Table>
         </div>
     )
+
 }

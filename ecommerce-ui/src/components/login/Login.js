@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import "./Login.css";
 import axios from 'axios';
+import { useAuth } from '../../context/auth'
 
 export default function Login(props) {
+  const { setAuthTokens } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,8 +26,20 @@ export default function Login(props) {
     user.password = password;
     axios.post('http://localhost:8000/api/login', user)
       .then(result => {
-        props.history.push("/");
+        if (result.status === 200) {
+          setAuthTokens(result.data.access_token);
+          props.history.push("/services");
+          //setLoggedIn(true);
+        } else {
+          //setIsError(true);
+        }
+      }).catch(e => {
+        //setIsError(true);
       });
+      /* .then(result => {
+        props.history.push("/");
+      }); */
+      
   }
 
   return (
