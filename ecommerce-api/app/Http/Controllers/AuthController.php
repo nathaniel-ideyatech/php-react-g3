@@ -49,7 +49,7 @@ class AuthController extends Controller
         ]);
 
         if(!auth()->attempt($loginData)){
-            return response(['message'=>'Invalid credentials']);
+            abort('401', 'Invalid credentials');
         }
 
         return $this->authProxy('password', [

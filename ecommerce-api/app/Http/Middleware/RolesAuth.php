@@ -24,11 +24,6 @@ class RolesAuth
         if($authUser->role_id == 1){
             return $next($request);
         }
-
-        return response(['error'=> [
-                "message"=>"Unauthorized Action",
-                "code"=>403
-            ]
-        ]);
+        abort('403', 'Unauthorized Action');
     }
 }
