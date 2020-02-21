@@ -2,15 +2,28 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Button, Table } from "react-bootstrap";
 import "./Service.css";
+import { useAuth  } from '../../context/auth';
 
 export default function Service(props) {
 
+    const { authTokens  } = useAuth();
     const [services, setServices] = useState([]);
+    const [isAuthorized, setIsAuthorized] = useState([false]);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/services')
+        const data = localStorage.getItem("tokens");
+        const header = {
+            "Authorization" : `Bearer ${data}`}
+
+        axios.get('http://localhost:8000/api/services', {headers: header})
             .then(res => {
-                setServices(res.data);
+                if(res.data.error) {
+                    setIsAuthorized(false);
+                    props.history.push(`/`);
+                } else {
+                    setIsAuthorized(true);
+                    setServices(res.data);
+                }
             })
             .catch(err => {
                 console.log(err);
@@ -26,7 +39,10 @@ export default function Service(props) {
     }
 
     function deleteService(id) {
-        axios.delete(`http://localhost:8000/api/services/${id}`)
+        const header = {
+            "Authorization" : `Bearer ${localStorage.getItem('tokens')}`
+        }
+        axios.delete(`http://localhost:8000/api/services/${id}`, {headers: header})
         .then(res => {
             window.location.reload(true);
         })

@@ -5,8 +5,8 @@ import { render } from '@testing-library/react';
 import App from './App';
 
 render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>,
+    //<BrowserRouter>
+        <App />,
+    //</BrowserRouter>,
     document.querySelector('#root')
 )

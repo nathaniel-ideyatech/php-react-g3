@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import "./Login.css";
 import axios from 'axios';
+import { useAuth } from '../../context/auth'
 
 export default function Login(props) {
+  const { setAuthTokens } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,6 +28,7 @@ export default function Login(props) {
     
     const data =  axios.post('http://localhost:8000/api/login', user)
       .then(result => {
+<<<<<<< HEAD
         // return result.data
         localStorage.setItem("AUTH KEY", result.data.access_token);
         console.log("Logged in...",result.data.access_token)
@@ -39,6 +42,22 @@ export default function Login(props) {
 
   const onLogin = async (event) => {
     event.preventDefault();
+=======
+        if (result.status === 200) {
+          setAuthTokens(result.data.access_token);
+          props.history.push("/services");
+          //setLoggedIn(true);
+        } else {
+          //setIsError(true);
+        }
+      }).catch(e => {
+        //setIsError(true);
+      });
+      /* .then(result => {
+        props.history.push("/");
+      }); */
+      
+>>>>>>> 8cefcd043252823a47a6a52a52967af9bba8eb4e
   }
 
   return (

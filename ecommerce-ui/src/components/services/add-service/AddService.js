@@ -27,16 +27,23 @@ class AddService extends React.Component {
             name: this.state.name,
             description: this.state.description,
             price: this.state.price
+
         }
+
+        const header = {
+            "Authorization" : `Bearer ${localStorage.getItem('tokens')}`
+        }
+
+
         if(this.state.id) {
-            axios.put(`http://localhost:8000/api/services/${this.state.id}`, service)
+            axios.put(`http://localhost:8000/api/services/${this.state.id}`, service, {headers: header})
             .then(result => {
                 if (result) {
                     this.props.history.push("/services");
                 }
             });
         } else {
-            axios.post(`http://localhost:8000/api/services`, service)
+            axios.post(`http://localhost:8000/api/services`, service, {headers: header})
             .then(result => {
                 if (result) {
                     this.props.history.push("/services");
@@ -46,9 +53,12 @@ class AddService extends React.Component {
     }
 
     componentDidMount() {
+        const header = {
+            "Authorization" : `Bearer ${localStorage.getItem('tokens')}`
+        }
         if(this.props.match.params.id) {
             this.state.id = this.props.match.params.id
-            axios.get(`http://localhost:8000/api/services/${this.state.id}`)
+            axios.get(`http://localhost:8000/api/services/${this.state.id}`, {headers: header})
             .then(result => {
                 if (result) {
                     const data = result.data;
