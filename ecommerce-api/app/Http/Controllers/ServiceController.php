@@ -4,15 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ServiceRequest;
 use App\Service;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +26,6 @@ class ServiceController extends Controller
      */
     public function store(ServiceRequest $request)
     {
-        //
         $user_id = Auth::id();
 
         $service = new Service;
@@ -52,9 +46,9 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show($id)
     {
-        return Service::find($service->id);
+        return Service::find($id);
     }
 
     /**
@@ -66,7 +60,6 @@ class ServiceController extends Controller
      */
     public function update(ServiceRequest $request, Service $service)
     {
-        //
         $service = Service::find($service->id);
         $service->name = $request->name;
         $service->description = $request->description;
@@ -84,7 +77,10 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
         return ['success' => Service::destroy($service->id)];
+    }
+
+    public function getServicesByDate() {
+        return Service::orderBy('created_at', 'desc')->get();
     }
 }
