@@ -1,13 +1,58 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Card } from 'react-bootstrap';
+import { useAuth  } from '../../context/auth';
+import axios from 'axios';
+import { composeInitialProps } from 'react-i18next';
 
 
 
-const CustomerDashboardServiceFeed = () => {
+const CustomerDashboardServiceFeed = (props) => {
+
+    //const { authTokens  } = useAuth();
+    const [services, setServices] = useState([]);
+    const [isAuthorized, setIsAuthorized] = useState([false]);
+
+    useEffect(() => {
+        const data = localStorage.getItem("tokens");
+        const header = {
+            "Authorization" : `Bearer ${data}`}
+
+        axios.get('http://localhost:8000/api/home/services', {headers: header})
+            .then(res => {
+                if(res.data.error) {
+                    setIsAuthorized(false);
+                } else {
+                    setIsAuthorized(true);
+                    setServices(res.data);
+                    console.log(res.data);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, []);
+
+
     return (
-        <section>
-            Customer Dashboard Service Feed
+        <section>{
+                services.map((value, index) => {
+                    return (
+                        <Card style={{ padding: '10px 100px 10px 50px', margin:'50px'}} key={value.id}>
+                            <Card.Img style={{ width:'200px', height:'200px', objectFit:'cover'}} variant="left" src="https://img1.wsimg.com/isteam/stock/1352/:/"/>
+                            <Card.Body>
+                                <Card.Title>{value.name}</Card.Title>
+                                <Card.Text>{ value.description }</Card.Text>
+                                <Card.Link href={'/services/view-details/'+ value.id} >See More</Card.Link>
+                            </Card.Body>
+                        </Card>
+                    )
+
+                })
+            }
+
         </section>
     )
 }
 
-export default CustomerDashboardServiceFeed
+
+export default CustomerDashboardServiceFeed 

@@ -4,7 +4,8 @@ import Login from './login/Login';
 import Register from './register/Register';
 import Home from './home/Home';
 import User from './users/User';
-import Service from './services/Service';
+import Service  from './services/Service';
+import ServiceDetails  from './services/service-detail/ServiceDetails';
 import AddService from './services/add-service/AddService';
 import AddUser from './users/add-user/AddUser';
 import { AuthContext } from '../context/auth';
@@ -35,6 +36,7 @@ export default function Main(props) {
                 <PrivateRoute exact path="/services" component={Service}/>
                     <PrivateRoute path="/services/add" component={AddService} />
                     <PrivateRoute path="/services/edit/:id" component={AddService} />
+                    <PrivateRoute path="/services/view-details/:id" component={ServiceDetails} />
             </BrowserRouter>
         </AuthContext.Provider>
     );

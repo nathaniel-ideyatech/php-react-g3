@@ -30,7 +30,7 @@ export default function Login(props) {
       .then(result => {
         if (result.status === 200) {
           setAuthTokens(result.data.access_token);
-          props.history.push("/services");
+          props.history.push("/");
           //setLoggedIn(true);
         } else {
           //setIsError(true);
