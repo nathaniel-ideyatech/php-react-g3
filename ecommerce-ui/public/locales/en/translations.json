@@ -1,0 +1,6 @@
+{
+    "welcomeMsg": "Welcome",
+    "nested": {
+        "startMsg": "Start working!"
+    }
+}

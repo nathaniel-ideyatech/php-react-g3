@@ -28,21 +28,6 @@ export default function Login(props) {
     
     const data =  axios.post('http://localhost:8000/api/login', user)
       .then(result => {
-<<<<<<< HEAD
-        // return result.data
-        localStorage.setItem("AUTH KEY", result.data.access_token);
-        console.log("Logged in...",result.data.access_token)
-        props.history.push("/");
-    });
-
-    console.log(localStorage)
-    
-
-  }
-
-  const onLogin = async (event) => {
-    event.preventDefault();
-=======
         if (result.status === 200) {
           setAuthTokens(result.data.access_token);
           props.history.push("/services");
@@ -57,7 +42,6 @@ export default function Login(props) {
         props.history.push("/");
       }); */
       
->>>>>>> 8cefcd043252823a47a6a52a52967af9bba8eb4e
   }
 
   return (
