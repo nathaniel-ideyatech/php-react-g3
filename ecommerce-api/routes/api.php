@@ -28,5 +28,7 @@ Route::middleware('auth:api')->group(function(){
     Route::apiResource('feedbacks', 'FeedbackController')->middleware('roles.authority');
 });
 
+Route::resource('users', 'UserController');
+
 
 
