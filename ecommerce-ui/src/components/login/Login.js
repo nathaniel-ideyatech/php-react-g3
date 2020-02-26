@@ -20,11 +20,13 @@ export default function Login(props) {
     return email.length > 0 && password.length > 0;
   }
 
-  function handleSubmit(event) {
+  const  handleSubmit = async (event) => {
     event.preventDefault();
     user.email = email;
     user.password = password;
-    axios.post('http://localhost:8000/api/login', user)
+    // const 
+    
+    const data =  axios.post('http://localhost:8000/api/login', user)
       .then(result => {
         if (result.status === 200) {
           setAuthTokens(result.data.access_token);

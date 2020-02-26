@@ -5,7 +5,7 @@ const apiUrl = 'http://localhost:9091/cc'
 
 export default {
     login: (username,password) => {
-        // const url = define url
+        // const url = http://localhost:8000/api/login
         // return axios.post(url)
     },
 

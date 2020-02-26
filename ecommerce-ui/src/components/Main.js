@@ -14,6 +14,8 @@ import Navigation from '../components/navigation/Navigation';
 export default function Main(props) {
     const [authTokens, setAuthTokens] = useState(localStorage.getItem("tokens"));
 
+    console.log(authTokens)
+
     const setTokens = (data) => {
         localStorage.setItem("tokens", data);
         setAuthTokens(data);
