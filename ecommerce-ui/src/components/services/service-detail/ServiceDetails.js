@@ -32,19 +32,16 @@ class ServiceDetails extends React.Component {
         }
 
         const header = {
-            "Authorization" : `Bearer ${localStorage.getItem('tokens')}`, 
-            "Content-Type" : 'application/json',
-            "X-Requested-With" : XMLHttpRequest
+            "Authorization" : `Bearer ${localStorage.getItem('tokens')}`
         }
 
-        /* axios.post(`http://localhost:8000/api/feedbacks`, feedback, {headers:header}).then(savedFeedback => {
-                this.props.history.push('/');
+        axios.post(`http://localhost:8000/api/feedbacks`, feedback, {headers:header}).then(savedFeedback => {
                 if(savedFeedback) {
-                    
+                    window.location.reload(true);
                 }
             }).catch(err => {
                 console.log(err);
-            }); */
+            });
     }
 
     componentDidMount() {
@@ -76,14 +73,14 @@ class ServiceDetails extends React.Component {
         return (
             <div className="ServiceDetails">
                 <Card style={{ padding: '10px 100px 10px 50px', margin:'50px'}}>
-                    <Card.Img style={{ width:'200px', height:'200px', objectFit:'cover'}} variant="left" src="https://img1.wsimg.com/isteam/stock/1352/:/"/>
+                    <Card.Img style={{ width:'200px', height:'200px', objectFit:'cover'}} variant="left" src="https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"/>
                     <Card.Body>
                         <Card.Title>{this.state.Service.name}</Card.Title>
                         <Card.Text>₱ {this.state.Service.price}</Card.Text>
                         <Card.Text>Contact Details: { this.state.Service.user? this.state.Service.user.email : 'Not available' }</Card.Text>
                         <Card.Text>{this.state.Service.description}</Card.Text>
                     </Card.Body>
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form>
                         <Form.Group>
                             <Form.Label>Comment</Form.Label>
                             <Form.Control 
@@ -98,7 +95,7 @@ class ServiceDetails extends React.Component {
                                 value={this.state.rating} onChange={this.handleChange}/>
                         </Form.Group>
 
-                        <Button type="submit">
+                        <Button  onClick={this.handleSubmit} >
                             Submit
                         </Button>
                     </Form>

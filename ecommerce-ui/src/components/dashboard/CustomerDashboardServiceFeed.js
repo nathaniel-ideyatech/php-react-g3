@@ -36,7 +36,7 @@ const CustomerDashboardServiceFeed = (props) => {
                 services.map((value, index) => {
                     return (
                         <Card style={{ padding: '20px 100px 10px 100px', margin:'50px'}} key={value.id}>
-                            <Card.Img style={{ width:'100%', height:'200px', objectFit:'cover'}} variant="left" src="https://img1.wsimg.com/isteam/stock/1352/:/"/>
+                            <Card.Img style={{ width:'100%', height:'200px', objectFit:'cover'}} variant="left" src="https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"/>
                             <Card.Body>
                                 <Card.Title>{value.name}</Card.Title>
                                 <Card.Text>₱ {value.price}</Card.Text>
