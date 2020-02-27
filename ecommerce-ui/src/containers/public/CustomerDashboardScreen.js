@@ -2,9 +2,9 @@ import React from 'react';
 
 
 
-const CustomerDashboardScreen = () => {
+const CustomerDashboardScreen = ({location}) => {
     return (
-        <section>
+        <section style={{"color":"black"}}>
             Customer Dashboard Screen 
         </section>
     )

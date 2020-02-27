@@ -20,7 +20,7 @@ const CustomerDashboardSideBar = () => {
 
     const [ priceFilterValue, setPriceFilterCalue ] = useState(5000)
     return (
-        <nav id="sidebar" className="active">
+        <nav id="sidebar" className="active" style={{"position":"fixed","top":"100px"}}>
 
             <div id="search-refinements">
                 <div className="category">

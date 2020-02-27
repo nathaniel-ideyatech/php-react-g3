@@ -5,6 +5,7 @@ import { Card, ListGroup, ListGroupItem, Form, Button } from "react-bootstrap";
 class ServiceDetails extends React.Component {
 
     constructor(props) {
+
         super(props);
         const Service = {
             name: '',
@@ -12,6 +13,8 @@ class ServiceDetails extends React.Component {
             price: '',
             id: ''
         };
+        console.log(props.service)
+
 
         this.state = {Service, feedbacks: [], comment: '', rating: ''}
 
@@ -23,51 +26,54 @@ class ServiceDetails extends React.Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    handleSubmit() {
+    // handleSubmit() {
         
-        const feedback = {
-            comment: this.state.comment,
-            rating: this.state.rating,
-            service_id: this.state.Service.id
-        }
+    //     const feedback = {
+    //         comment: this.state.comment,
+    //         rating: this.state.rating,
+    //         service_id: this.state.Service.id
+    //     }
 
-        const header = {
-            "Authorization" : `Bearer ${localStorage.getItem('tokens')}`
-        }
+    //     const header = {
+    //         "Authorization" : `Bearer ${localStorage.getItem('tokens')}`, 
+    //         "Content-Type" : 'application/json',
+    //         "X-Requested-With" : XMLHttpRequest
+    //     }
 
-        axios.post(`http://localhost:8000/api/feedbacks`, feedback, {headers:header}).then(savedFeedback => {
-                if(savedFeedback) {
-                    window.location.reload(true);
-                }
-            }).catch(err => {
-                console.log(err);
-            });
-    }
+    //     /* axios.post(`http://localhost:8000/api/feedbacks`, feedback, {headers:header}).then(savedFeedback => {
+    //             this.props.history.push('/');
+    //             if(savedFeedback) {
+                    
+    //             }
+    //         }).catch(err => {
+    //             console.log(err);
+    //         }); */
+    // }
 
-    componentDidMount() {
-        const header = {
-            "Authorization" : `Bearer ${localStorage.getItem('tokens')}`
-        }
-            this.state.id = this.props.match.params.id
-            axios.get(`http://localhost:8000/api/services/${this.state.id}`, {headers: header})
-            .then(result => {
-                if (result) {
-                    const data = result.data;
-                    this.setState({
-                        Service: data
+    // componentDidMount() {
+    //     const header = {
+    //         "Authorization" : `Bearer ${localStorage.getItem('tokens')}`
+    //     }
+    //         this.state.id = this.props.match.params.id
+    //         axios.get(`http://localhost:8000/api/services/${this.state.id}`, {headers: header})
+    //         .then(result => {
+    //             if (result) {
+    //                 const data = result.data;
+    //                 this.setState({
+    //                     Service: data
                         
-                    });
-                }
-            });
+    //                 });
+    //             }
+    //         });
 
-            axios.get(`http://localhost:8000/api/feedbacks/service/${this.state.id}`, {headers: header}).then(result2 => {
-                if (result2) {
-                    this.setState({
-                        feedbacks: result2.data
-                    });
-                }
-            });
-    }
+    //         axios.get(`http://localhost:8000/api/feedbacks/service/${this.state.id}`, {headers: header}).then(result2 => {
+    //             if (result2) {
+    //                 this.setState({
+    //                     feedbacks: result2.data
+    //                 });
+    //             }
+    //         });
+    // }
 
     render() {
         return (
