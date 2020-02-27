@@ -9,19 +9,26 @@ import { render } from '@testing-library/react';
 import App from './App';
 // import { Provider } from 'react-redux';
 
-import { HomeScreen } from './containers'
+import { MainScreen } from './containers';
 
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
-// render(
-//     <BrowserRouter>
-//         <App />
-//     </BrowserRouter>,
-//     document.querySelector('#root')
-// )
+import rootReducer from 'reducers';
+
+const middlewares = [
+    thunk
+]
+
+const store = createStore(rootReducer, {}, applyMiddleware(...middlewares));
+
 
 // Set routing
 ReactDOM.render(
-    <BrowserRouter>
-        <HomeScreen />
-    </BrowserRouter>, document.getElementById('root')
+    <Provider store={store}>
+        <BrowserRouter>
+            <MainScreen />
+        </BrowserRouter>
+    </Provider>, document.getElementById('root')
 );

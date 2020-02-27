@@ -7,8 +7,9 @@ import { FormControl } from 'components';
 
 const TextFilter = ({ label, onChange }) => {
     const onChangeText = (event) => {
-        const value = event ? event.target.value : '';
-        _.isFunction(onChange) && onChange(value);
+        console.log(event.target.value)
+        // const value = event ? event.target.value : '';
+        // _.isFunction(onChange) && onChange(value);
     };
 
     return (

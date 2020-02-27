@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -52,5 +53,9 @@ class UserController extends Controller
 
     public function getActiveUsersOnly(){
         return User::all()->where('is_active',1);
+    }
+
+    public function getCurrentUser() {
+        return Auth::user();
     }
 }

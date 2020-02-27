@@ -2,9 +2,9 @@ import React from 'react';
 
 
 
-const LoginScreen = () => {
+const LoginScreen = ({location}) => {
     return (
-        <section>
+        <section style={{"color":"black"}}>
             Login Screen
         </section>
     )

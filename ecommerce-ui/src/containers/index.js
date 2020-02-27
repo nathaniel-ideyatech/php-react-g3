@@ -6,14 +6,17 @@ import HomeScreen from './public/HomeScreen';
 import LoginScreen from './public/LoginScreen';
 import CustomerDashboardScreen from './public/CustomerDashboardScreen';
 import ServiceProviderDashboardScreen from './public/ServiceProviderDashboardScreen';
+import MainScreen from './public/MainScreen';
+
 
 
 export {
-    // ManagementScreen,
-    // ManagementUserScreen,
-    // ManagementServiceScreen,
+    ManagementScreen,
+    ManagementUserScreen,
+    ManagementServiceScreen,
     HomeScreen,
-    // LoginScreen,
-    // CustomerDashboardScreen,
-    // ServiceProviderDashboardScreen,
+    LoginScreen,
+    CustomerDashboardScreen,
+    ServiceProviderDashboardScreen,
+    MainScreen,
 }

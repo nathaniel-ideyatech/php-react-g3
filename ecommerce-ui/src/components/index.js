@@ -7,9 +7,12 @@ import CustomerDashboardServiceSuggestions from './dashboard/CustomerDashboardSi
 import Filter from './common/Filter';
 import Toast from './common/Toast';
 import FormControl from './common/FormControl';
-import AuthenticatedRoute from './common/FormControl';
+import AuthenticatedRoute from './common/AuthenticatedRoute';
 import MultipleSelection from './common/MultipleSelection';
 
+import ServiceDetailModal from './services/ServiceDetailModal';
+
+import ServiceDetails from './services/service-detail/ServiceDetails';
 
 
 export {
@@ -24,4 +27,7 @@ export {
     FormControl,
     AuthenticatedRoute,
     MultipleSelection,
+
+    ServiceDetailModal,
+    ServiceDetails
 }
