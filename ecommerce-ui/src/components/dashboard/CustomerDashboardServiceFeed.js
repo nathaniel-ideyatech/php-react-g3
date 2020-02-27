@@ -12,11 +12,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import {Button} from 'react-bootstrap';
 
-<<<<<<< HEAD
-
-=======
-const CustomerDashboardServiceFeed = (props) => {
->>>>>>> 300857a6259be3161fa5fb1728846da9cf68daca
 
 const getServiceList = async (dispatch) => {
     try {
