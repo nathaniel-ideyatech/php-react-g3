@@ -46,7 +46,7 @@ class FeedbackController extends Controller
      */
     public function show(Feedback $feedback)
     {
-        return Feedback::find($feedback->id);
+        return Feedback::with('user:id,email,name')->find($feedback->id);
     }
 
     /**
@@ -77,6 +77,6 @@ class FeedbackController extends Controller
     }
 
     public function getFeedbackByServiceId($id) {
-        return Feedback::where('service_id', $id)->orderBy('created_at', 'desc')->get();
+        return Feedback::with('user:id,email,name')->where('service_id', $id)->orderBy('created_at', 'desc')->get();
     }
 }

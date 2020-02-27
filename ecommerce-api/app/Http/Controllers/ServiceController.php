@@ -48,7 +48,7 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        return Service::find($id);
+        return Service::with('user:id,email,name')->find($id);
     }
 
     /**
@@ -81,6 +81,6 @@ class ServiceController extends Controller
     }
 
     public function getServicesByDate() {
-        return Service::orderBy('created_at', 'desc')->get();
+        return Service::with('user:id,email,name')->orderBy('created_at', 'desc')->get();
     }
 }
