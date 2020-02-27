@@ -80,6 +80,7 @@ class ServiceDetails extends React.Component {
                     <Card.Body>
                         <Card.Title>{this.state.Service.name}</Card.Title>
                         <Card.Text>₱ {this.state.Service.price}</Card.Text>
+                        <Card.Text>Contact Details: { this.state.Service.user? this.state.Service.user.email : 'Not available' }</Card.Text>
                         <Card.Text>{this.state.Service.description}</Card.Text>
                     </Card.Body>
                     <Form onSubmit={this.handleSubmit}>

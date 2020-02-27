@@ -5,7 +5,6 @@ import axios from 'axios';
 import { composeInitialProps } from 'react-i18next';
 
 
-
 const CustomerDashboardServiceFeed = (props) => {
 
     //const { authTokens  } = useAuth();
@@ -24,7 +23,6 @@ const CustomerDashboardServiceFeed = (props) => {
                 } else {
                     setIsAuthorized(true);
                     setServices(res.data);
-                    console.log(res.data);
                 }
             })
             .catch(err => {
@@ -37,12 +35,15 @@ const CustomerDashboardServiceFeed = (props) => {
         <section>{
                 services.map((value, index) => {
                     return (
-                        <Card style={{ padding: '10px 100px 10px 50px', margin:'50px'}} key={value.id}>
-                            <Card.Img style={{ width:'200px', height:'200px', objectFit:'cover'}} variant="left" src="https://img1.wsimg.com/isteam/stock/1352/:/"/>
+                        <Card style={{ padding: '20px 100px 10px 100px', margin:'50px'}} key={value.id}>
+                            <Card.Img style={{ width:'100%', height:'200px', objectFit:'cover'}} variant="left" src="https://img1.wsimg.com/isteam/stock/1352/:/"/>
                             <Card.Body>
                                 <Card.Title>{value.name}</Card.Title>
+                                <Card.Text>₱ {value.price}</Card.Text>
                                 <Card.Text>{ value.description }</Card.Text>
+                                <Card.Text>Contact Details: { value.user? value.user.email : 'Not available' }</Card.Text>
                                 <Card.Link href={'/services/view-details/'+ value.id} >See More</Card.Link>
+                                
                             </Card.Body>
                         </Card>
                     )
