@@ -5,8 +5,6 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { ServiceDetails} from 'components';
 
 const ServiceDetailModal = ({serviceDetail, isShown, onClose}) => {
-    console.log(serviceDetail)
-
     const serviceName = serviceDetail ? serviceDetail.name : '';
     const serviceDesc = serviceDetail ? serviceDetail.description : ''
 

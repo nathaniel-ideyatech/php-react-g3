@@ -9,6 +9,7 @@ import Toast from './common/Toast';
 import FormControl from './common/FormControl';
 import AuthenticatedRoute from './common/AuthenticatedRoute';
 import MultipleSelection from './common/MultipleSelection';
+import MediaCard from './common/MediaCard';
 
 import ServiceDetailModal from './services/ServiceDetailModal';
 
@@ -27,6 +28,7 @@ export {
     FormControl,
     AuthenticatedRoute,
     MultipleSelection,
+    MediaCard,
 
     ServiceDetailModal,
     ServiceDetails

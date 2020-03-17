@@ -29,7 +29,7 @@ class ServiceController extends Controller
         $user_id = Auth::id();
 
         $service = new Service;
-        $service->user_id = $user_id;
+        $service->user_id = $request->user_id;
         $service->name = $request->name;
         $service->description = $request->description;
         $service->is_active = true;
