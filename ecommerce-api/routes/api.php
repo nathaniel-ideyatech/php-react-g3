@@ -19,7 +19,9 @@ Route::post('/login/refresh', 'AuthController@refresh');
 Route::get('/home/services', 'ServiceController@getServicesByDate');
 Route::get('/services/{id}', 'ServiceController@show');
 Route::get('/feedbacks/service/{id}', 'FeedbackController@getFeedbackByServiceId');
-
+Route::resource('service_categories', 'ServiceCategoryController')->only([
+    'index', 'show'
+]);
 Route::middleware('auth:api')->group(function(){
     Route::get('/logout','AuthController@logout');
     Route::get('/user/profile/current-user','UserController@getCurrentUser');
