@@ -72,10 +72,6 @@ class AddService extends React.Component {
         }
     }
 
-    back() {
-        
-    }
-
     render() {
         return (
             <div className="AddService">
@@ -106,7 +102,9 @@ class AddService extends React.Component {
                     <Button type="submit">
                         Submit
                     </Button>
-                    
+                    <Button onClick={() => this.props.history.push("/services")}>
+                        Cancel
+                    </Button>
                 </Form>
             </div>
         )

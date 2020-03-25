@@ -13,4 +13,8 @@ class Service extends Model
     public function feedbacks() {
         return $this->hasMany('App\Feedback');
     }
+
+    public function category() {
+        return $this->hasOne('App\ServiceCategory');
+    }
 }
