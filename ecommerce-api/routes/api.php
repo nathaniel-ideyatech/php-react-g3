@@ -17,6 +17,8 @@ Route::post('/register','AuthController@register');
 Route::post('/login','AuthController@login');
 Route::post('/login/refresh', 'AuthController@refresh');
 Route::get('/home/services', 'ServiceController@getServicesByDate');
+Route::get('/home/services/category/{id}', 'ServiceController@getServicesByCategory');
+Route::get('/home/services/search', 'ServiceController@searchServicesByKeyword');
 Route::get('/services/{id}', 'ServiceController@show');
 Route::get('/feedbacks/service/{id}', 'FeedbackController@getFeedbackByServiceId');
 Route::resource('service_categories', 'ServiceCategoryController')->only([
