@@ -6,6 +6,10 @@
     width: 60%!important;
 }
 
+.AddUserForm {
+    margin: 0 50px 0 50px;
+}
+
 .AddUser .btn {
     margin-right: 10px;
 }

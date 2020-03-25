@@ -68,7 +68,7 @@ export default function User(props) {
                                 <tr key={value.id}>
                                     <td>{value.name}</td>
                                     <td>{value.email}</td>
-                                    <td>{value.user_type}</td>
+                                    <td>{value.role_id}</td>
                                     <td>
                                         <Button onClick={()=> editUser(value.id)}>Edit</Button>
                                         <Button onClick={()=> deleteUser(value.id)}>Delete</Button>
