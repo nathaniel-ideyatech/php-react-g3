@@ -1,13 +1,13 @@
 @media all and (min-width: 480px) {
-    .Login {
-      padding: 60px 0;
+    .LoginForm {
+      padding: 120px 0 20px;
     }
   
-    .Login h3 {
+    .LoginForm h3 {
       text-align: center;
     }
 
-    .Login form {
+    .LoginForm form {
       margin: 0 auto;
       max-width: 320px;
     }
