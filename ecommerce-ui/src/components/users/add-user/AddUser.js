@@ -67,7 +67,7 @@ class AddUser extends React.Component {
                         email: data.email,
                         //password: data.password,
                         //password_confirmation: data.password_confirmation,
-                        role_id: data.role_id
+                        roleId: data.role_id
                     });
                 }
             });
@@ -77,50 +77,54 @@ class AddUser extends React.Component {
     render() {
         return (
             <div className="AddUser">
-                <h3>Create user</h3>
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Group>
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control 
-                            type="text" name="name" placeholder="Name of user"
-                            value={this.state.name} onChange={this.handleChange}/>
-                    </Form.Group>
+                <div className="AddUserForm">                
+                    <h3>Create user</h3>
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Group>
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control 
+                                type="text" name="name" placeholder="Name of user"
+                                value={this.state.name} onChange={this.handleChange}/>
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control 
-                            type="email" name="email" placeholder="Email of user"
-                            value={this.state.email} onChange={this.handleChange}/>
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control 
+                                type="email" name="email" placeholder="Email of user"
+                                value={this.state.email} onChange={this.handleChange}/>
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control 
-                            type="password" name="password" placeholder="Password"
-                            value={this.state.password} onChange={this.handleChange} />
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control 
+                                type="password" name="password" placeholder="Password"
+                                value={this.state.password} onChange={this.handleChange} />
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control 
-                            type="password" name="confirmPassword" placeholder="Confirm Password"
-                            value={this.state.confirmPassword} onChange={this.handleChange}/>
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Confirm Password</Form.Label>
+                            <Form.Control 
+                                type="password" name="confirmPassword" placeholder="Confirm Password"
+                                value={this.state.confirmPassword} onChange={this.handleChange}/>
+                        </Form.Group>
 
-                    <Form.Group controlId="roleType">
-                        <Form.Label>User Type</Form.Label>
-                        <Form.Control as="select" name="roleId" value={this.state.roleId} onChange={this.handleChange}>
-                            <option value="1">Admin</option>
-                            <option value="2">Service Provider</option>
-                            <option value="3">Customer</option>
-                        </Form.Control>
-                    </Form.Group>
+                        <Form.Group controlId="roleType">
+                            <Form.Label>User Type</Form.Label>
+                            <Form.Control as="select" name="roleId" value={this.state.roleId} onChange={this.handleChange}>
+                                <option value="1">Admin</option>
+                                <option value="2">Service Provider</option>
+                                <option value="3">Customer</option>
+                            </Form.Control>
+                        </Form.Group>
 
-                    <Button type="submit">
-                        Submit
-                    </Button>
-                    
-                </Form>
+                        <Button type="submit">
+                            Submit
+                        </Button>
+                        <Button onClick={() => this.props.history.push("/users")}>
+                            Cancel
+                        </Button>
+                    </Form>
+                </div>
             </div>
         )
     }
