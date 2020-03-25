@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import _ from 'underscore';
-import { ServiceDetailModal } from 'components';
+import { ServiceDetailModal, ServiceFeedbackModal } from 'components';
 
 
 const useStyles = makeStyles({
@@ -31,13 +31,14 @@ const useStyles = makeStyles({
   }
 });
 
-const MediaCard = ({serviceDetail})  =>{
+const MediaCard = ({serviceDetail}, props)  =>{
   const classes = useStyles();
 
 
   const [ uiState, setUiState ] = useState({
     selectedService: null,
     showServiceDetailModal: false,
+    showServiceFeedbackModal: false,
   })
 
   const onRequestSeeDetails = (value) =>{
@@ -46,6 +47,7 @@ const MediaCard = ({serviceDetail})  =>{
       showServiceDetailModal: true,
       selectedService: value
     })
+    // props.push(`/services/edit/${value.id}`);
   }
 
   const onCancelShowDetails = () =>{
@@ -55,6 +57,21 @@ const MediaCard = ({serviceDetail})  =>{
     })
   }
 
+
+  const onRequestFeedback = (value) => {
+      setUiState({
+        ...uiState,
+        showServiceFeedbackModal: true,
+        selectedService: value
+      })
+  }
+
+  const onCancelServiceFeedback = () =>{
+    setUiState({
+      ...uiState,
+      showServiceFeedbackModal: false
+    })
+  }
   return (
     <section className={classes.root}>
       <Card className={classes.card}>
@@ -65,7 +82,7 @@ const MediaCard = ({serviceDetail})  =>{
                   title="Service image"
               />
               <CardContent style={{maxHeight: '84px'}}>
-                  <Typography variant="h6" component="h2" nowrap style={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                  <Typography variant="h6" component="h2" style={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
                     {serviceDetail.name}
                   </Typography>
                   <Typography variant="body2" color="textSecondary" component="p" noWrap>
@@ -77,10 +94,10 @@ const MediaCard = ({serviceDetail})  =>{
               <Button color="primary" style={{'width':'10px'}}>
                   <i className="fas fa-cart-arrow-down"></i>  
               </Button>
-              <Button color="primary" style={{'marginLeft':'-20px'}}>
+              <Button color="primary" style={{'marginLeft':'-20px'}} onClick={() => onRequestFeedback(serviceDetail)}>
                   <i className="fas fa-file-signature"></i>
               </Button>
-              <Typography variant="body2" color="textSecondary" component="p" noWrap alignRightd>
+              <Typography variant="body2" color="textSecondary" component="p">
                 {serviceDetail.price}
               </Typography>
           </CardActions>
@@ -91,6 +108,13 @@ const MediaCard = ({serviceDetail})  =>{
           isShown={uiState.showServiceDetailModal} 
           onClose={onCancelShowDetails} 
       />
+
+      <ServiceFeedbackModal 
+          serviceDetail={uiState.selectedService} 
+          isShown={uiState.showServiceFeedbackModal} 
+          onClose={onCancelServiceFeedback} 
+      />
+
     </section>
   );
 }

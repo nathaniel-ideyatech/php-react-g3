@@ -12,6 +12,8 @@ import { AuthContext } from '../context/auth';
 import PrivateRoute from './PrivateRoute'
 import Navigation from '../components/navigation/Navigation';
 
+import { ServiceDetail } from 'containers'
+
 export default function Main(props) {
     const [authTokens, setAuthTokens] = useState(localStorage.getItem("tokens"));
 
@@ -30,6 +32,7 @@ export default function Main(props) {
                 <PrivateRoute exact path="/" component={Home}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
+                <Route path="/services/service/:id" component={ServiceDetail} />
                 <PrivateRoute exact path="/users" component={User}/>
                     <PrivateRoute path="/users/add" component={AddUser} />
                     <PrivateRoute path="/users/edit/:id" component={AddUser} />

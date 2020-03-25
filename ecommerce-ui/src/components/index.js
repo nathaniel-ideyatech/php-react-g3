@@ -12,6 +12,8 @@ import MultipleSelection from './common/MultipleSelection';
 import MediaCard from './common/MediaCard';
 
 import ServiceDetailModal from './services/ServiceDetailModal';
+import ServiceFeedbackModal from './services/ServiceFeedbackModal';
+
 
 import ServiceDetails from './services/service-detail/ServiceDetails';
 
@@ -31,5 +33,6 @@ export {
     MediaCard,
 
     ServiceDetailModal,
-    ServiceDetails
+    ServiceDetails,
+    ServiceFeedbackModal
 }

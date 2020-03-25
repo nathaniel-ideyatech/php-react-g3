@@ -7,6 +7,8 @@ import LoginScreen from './public/LoginScreen';
 import CustomerDashboardScreen from './public/CustomerDashboardScreen';
 import ServiceProviderDashboardScreen from './public/ServiceProviderDashboardScreen';
 import MainScreen from './public/MainScreen';
+import ServiceDetail from './public/ServiceDetail';
+
 
 
 
@@ -19,4 +21,5 @@ export {
     CustomerDashboardScreen,
     ServiceProviderDashboardScreen,
     MainScreen,
+    ServiceDetail
 }

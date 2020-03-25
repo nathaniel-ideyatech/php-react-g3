@@ -28,9 +28,10 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/users/active', 'UserController@getActiveUsersOnly')->middleware('roles.authority');
     Route::resource('users', 'UserController')->middleware('roles.authority');
     Route::apiResource('services', 'ServiceController')->except(['show']);
-    Route::apiResource('feedbacks', 'FeedbackController')->middleware('roles.authority');
+//    Route::apiResource('feedbacks', 'FeedbackController')->middleware('roles.authority');
 });
 
+Route::apiResource('feedbacks', 'FeedbackController');
 Route::resource('users', 'UserController');
 
 

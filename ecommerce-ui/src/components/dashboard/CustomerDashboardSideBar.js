@@ -103,15 +103,15 @@ const CustomerDashboardSideBar = () => {
     return (
         <nav id="sidebar" className="active" style={{"position":"fixed","top":"100px"}}>
             <div className={classes.filterBarLabel}>
-                <h5><i class="fas fa-filter"></i> Filters</h5>
+                <h5><i className="fas fa-filter"></i> Filters</h5>
             </div>
-            <Divider width="75%" alignRight/>
+            <Divider width="75%"/>
 
             <div id='search-refinements'>
                 <List className={classes.root}>
                     <ListItem>
                         <ListItemAvatar className={classes.listItemAvatar}>
-                            <i class="fa fa-list-alt" aria-hidden="true"></i>
+                            <i className="fa fa-list-alt" aria-hidden="true"></i>
                         </ListItemAvatar>
                         <ListItemText className={classes.listItemText}>
                             <span>Category</span>
@@ -126,10 +126,10 @@ const CustomerDashboardSideBar = () => {
 
                     <ListItem className={classes.listItem}>
                         <ListItemAvatar className={classes.listItemAvatar}>
-                            <i class="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
                         </ListItemAvatar>
                         <ListItemText className={classes.listItemText}>
-                            <span>Reviews <i class="fas fa-sort-amount-up"></i></span>
+                            <span>Reviews <i className="fas fa-sort-amount-up"></i></span>
                         </ListItemText>
                     </ListItem>
                     <section className={classes.filterTool}> 
@@ -137,7 +137,6 @@ const CustomerDashboardSideBar = () => {
                             name="customized-empty"
                             value={value}
                             onChange={(event, newValue) => {
-                                console.log(value)
                                 setValue(newValue);
                             }}
                         />
@@ -145,10 +144,10 @@ const CustomerDashboardSideBar = () => {
 
                     <ListItem style={{marginTop: '-60px'}}>
                         <ListItemAvatar className={classes.listItemAvatar}>
-                            <i class="fas fa-money-check-alt"></i>
+                            <i className="fas fa-money-check-alt"></i>
                         </ListItemAvatar>
                         <ListItemText className={classes.listItemText}>
-                            <span>Price <i class="fas fa-sort-amount-up"></i></span>
+                            <span>Price <i className="fas fa-sort-amount-up"></i></span>
                         </ListItemText>
                     </ListItem>
                     <section className={classes.filterTool}> 
