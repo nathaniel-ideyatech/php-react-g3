@@ -2,6 +2,10 @@ import axios from 'axios';
 
 const apiUrl = 'http://localhost:8000'; //local
 
+const header = {
+    "Authorization" : `Bearer ${localStorage.getItem('tokens')}`
+}
+
 export default {
     getFeedbackList: () => {
         const url = `${apiUrl}/api/feedbacks/`;
@@ -10,7 +14,7 @@ export default {
 
     postFeedback: (body) => {
         const url = `${apiUrl}/api/feedbacks/`;
-        return axios.post(url,body)
+        return axios.post(url, body, {headers: header})
     },
 
     getFeedbackByService: (id) => {

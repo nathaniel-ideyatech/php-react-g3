@@ -10,6 +10,8 @@ import FormControl from './common/FormControl';
 import AuthenticatedRoute from './common/AuthenticatedRoute';
 import MultipleSelection from './common/MultipleSelection';
 import MediaCard from './common/MediaCard';
+import Feedback from './common/Feedback';
+
 
 import ServiceDetailModal from './services/ServiceDetailModal';
 import ServiceFeedbackModal from './services/ServiceFeedbackModal';
@@ -31,6 +33,7 @@ export {
     AuthenticatedRoute,
     MultipleSelection,
     MediaCard,
+    Feedback,
 
     ServiceDetailModal,
     ServiceDetails,
