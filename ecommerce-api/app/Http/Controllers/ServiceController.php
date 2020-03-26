@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ServiceRequest;
 use App\Service;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
@@ -82,5 +83,18 @@ class ServiceController extends Controller
 
     public function getServicesByDate() {
         return Service::with('user:id,email,name')->orderBy('created_at', 'desc')->get();
+    }
+
+    public function getServicesByCategory($id) {
+        return Service::with('user:id,email,name')->where('service_category_id', $id)->orderBy('created_at', 'desc')->get();
+    }
+
+    public function searchServicesByKeyword(Request $request) {
+        if ($request->has('keyword')) {
+            return Service::with('user:id,email,name')->where('name', 'LIKE', '%'.$request->keyword.'%')->orderBy('created_at', 'desc')->get();
+        } else {
+            return Service::with('user:id,email,name')->orderBy('created_at', 'desc')->get();
+        }
+
     }
 }
