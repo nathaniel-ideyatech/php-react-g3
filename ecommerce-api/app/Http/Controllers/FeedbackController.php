@@ -79,4 +79,6 @@ class FeedbackController extends Controller
     public function getFeedbackByServiceId($id) {
         return Feedback::with('user:id,email,name')->where('service_id', $id)->orderBy('created_at', 'desc')->get();
     }
+
+//    public function get
 }

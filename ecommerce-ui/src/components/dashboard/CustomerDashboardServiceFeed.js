@@ -4,13 +4,15 @@ import { useAuth  } from '../../context/auth';
 import axios from 'axios';
 import { composeInitialProps } from 'react-i18next';
 
-import { ServiceDetailModal } from 'components';
+import { ServiceDetailModal, MediaCard } from 'components';
 
 import ServiceAction from 'actions/ServiceAction';
 import { ServiceService } from 'services';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {Button} from 'react-bootstrap';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 
 const getServiceList = async (dispatch) => {
@@ -30,42 +32,19 @@ const onInitialize = (dispatch) => {
     }
 }
 
+const useStyles = makeStyles({
+  root: { 
+    marginLeft: '20%',
+    display: 'inline-block'
+  },
+});
+
 
 const CustomerDashboardServiceFeed = (props) => {
+    const classes = useStyles();
     const dispatch = useDispatch()
-    //const { authTokens  } = useAuth();
-    // const [services, setServices] = useState([]);
-    const [isAuthorized, setIsAuthorized] = useState([false]);
-
-    const [ uiState, setUiState ] = useState({
-        selectedService: null,
-        showServiceDetailModal: false,
-        filter: {
-            name: '',
-            price: 0,
-        }
-    })
 
     const services = useSelector(state => state.service.serviceList);
-    console.log(services)
-
-    // console.log(services2)
-
-    const onRequestSeeDetails = (value) =>{
-        console.log(value)
-        setUiState({
-            ...uiState,
-            showServiceDetailModal: true,
-            selectedService: value
-        })
-    }
-
-    const onCancelShowDetails = () =>{
-        setUiState({
-            ...uiState,
-            showServiceDetailModal: false
-        })
-    }
 
 
 
@@ -73,28 +52,13 @@ const CustomerDashboardServiceFeed = (props) => {
 
     return (
         <div>
-            <div style={{"position":"relative","width":"60%", "left":"25%"}}>
+            <div className={classes.root}>
                 {
-                    services.map((value, index) => {
-                        return (
-                            <Card style={{ padding: '10px 100px 10px 50px', margin:'50px'}} key={value.id}>
-                                <Card.Img style={{ width:'200px', height:'200px', objectFit:'cover'}} variant="left" src="https://img1.wsimg.com/isteam/stock/1352/:/"/>
-                                <Card.Body>
-                                    <Card.Title>{value.name}</Card.Title>
-                                    <Card.Text>{ value.description }</Card.Text>
-                                    <Button onClick={()=>onRequestSeeDetails(value)}>See More</Button>
-                                </Card.Body>
-                            </Card>
-                        )
+                    services.map((value,index) => {
+                        return <MediaCard serviceDetail={value} key={value.id}/>
                     })
                 }
             </div>
-
-            <ServiceDetailModal 
-                serviceDetail={uiState.selectedService} 
-                isShown={uiState.showServiceDetailModal} 
-                onClose={onCancelShowDetails} 
-            />
         </div>
     )
 }
