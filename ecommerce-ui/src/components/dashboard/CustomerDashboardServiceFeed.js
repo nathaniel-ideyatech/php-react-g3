@@ -46,8 +46,6 @@ const CustomerDashboardServiceFeed = (props) => {
 
     const services = useSelector(state => state.service.serviceList);
 
-
-
     useEffect(onInitialize(dispatch), []);
 
     return (

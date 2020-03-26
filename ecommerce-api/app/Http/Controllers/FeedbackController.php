@@ -35,7 +35,7 @@ class FeedbackController extends Controller
         $feedback->comment = $request->comment;
 
         $success = $feedback->save();
-        return ['success' => $success];
+        return ['success' => $success, 'user'=> $user_id];
     }
 
     /**

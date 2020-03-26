@@ -7,6 +7,8 @@ import { ServiceDetails} from 'components';
 import { FeedbackService } from 'services'
 
 import StarRatings from 'react-star-ratings';
+import { Toast } from 'components';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ServiceFeedbackModal = ({serviceDetail, isShown, onClose}) => {
     const serviceName = serviceDetail ? serviceDetail.name : '';
@@ -14,7 +16,7 @@ const ServiceFeedbackModal = ({serviceDetail, isShown, onClose}) => {
 
     const [rating,setRating] = useState(2)
     const [comment,setcomment] = useState('')
-
+    // console.log(localStorage.getItem('tokens'))
 
 
     const initialFeedbackFormState = {
@@ -31,11 +33,12 @@ const ServiceFeedbackModal = ({serviceDetail, isShown, onClose}) => {
     }
 
     const submitFeedback = async (event) =>{
-        console.log(serviceDetail)
         feedbackForm.comment = comment;
         feedbackForm.rating = rating
         feedbackForm.service_id = serviceDetail.id
         FeedbackService.postFeedback(feedbackForm)
+
+        onClose()
     }
 
     const changeRating = (event) =>{
@@ -52,7 +55,7 @@ const ServiceFeedbackModal = ({serviceDetail, isShown, onClose}) => {
 
             <Modal.Body> 
                 <Form 
-                // onSubmit={submitFeedback}
+                    // onSubmit={submitFeedback}
                 >
                     <Form.Group>
                         <StarRatings
